@@ -3,26 +3,26 @@ import styled from 'styled-components'
 import {useState} from 'react'
 
 const AInner = styled.a`
-    display: block;
-    background:#ddd;
-    margin:0 2px;
-    padding:10px 20px;
-    ${props => props.focused ? 'background:#fff;' : 'background:#ddd;'};
-`
-const Tab = styled.div`
-    display: flex;
-    flex-wrap: wrap;
+    list-style: none;
+    padding: 4px 22px;
+    cursor: pointer;
+    border-bottom: ${props => props.focused ? '2px solid #F44336' : 'none'};
 `
 
-export const Header = () => {
-    const [tab, setTab] = useState('top');
+const Tab = styled.div`
+    display: flex;
+    padding: 24px;
+    border-bottom: 1px solid #E0E0E0;
+`
+
+export const Header = ({ tab }) => {
     return (
         <Tab>
             <Link href="/">
-            <AInner focused={tab === 'top'} onClick={() => setTab('top')}>Top</AInner>
+            <AInner focused={tab === 'top'}>Top</AInner>
             </Link>
             <Link href="/regist">
-            <AInner focused={tab === 'regist'} onClick={() => setTab('regist')}>メッセージ登録</AInner>
+            <AInner focused={tab === 'regist'}>メッセージ登録</AInner>
             </Link>
         </Tab>
     )

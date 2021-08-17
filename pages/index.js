@@ -29,7 +29,7 @@ export default function Home() {
   },[])
   return (
     <Container>
-      <Header></Header>
+      <Header tab={'top'}></Header>
       <h2>テスト</h2>
       {
         item.map((str,index) => {

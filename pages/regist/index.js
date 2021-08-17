@@ -1,10 +1,15 @@
 import {Header} from '../../components/header.js'
+import styled from 'styled-components'
+
+const Container = styled.div`
+  padding:10px 20px;
+`
 
 export default function Regist() {
     return (
-      <div>
-      <Header/>
-      <h1>Regist</h1>
-      </div>
+      <Container>
+      <Header tab={'regist'}/>
+      <h2>メッセージ登録</h2>
+      </Container>
     )
 }
