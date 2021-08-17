@@ -37,31 +37,6 @@ const MY_QUERY_QUERY = gql`
   }
 `;
 
-const MyQueryQuery = (props) => {
-  return (
-    <Query
-      query={MY_QUERY_QUERY} >
-      {({ loading, error, data }) => {
-        if (loading) return <pre>Loading</pre>
-        if (error)
-          return (
-            <pre>
-              Error in MY_QUERY_QUERY
-              {JSON.stringify(error, null, 2)}
-            </pre>
-          );
-    
-        if (data) {
-          return (
-            <pre>{JSON.stringify(data, null, 2)}</pre>
-          )
-        }
-      }}
-    </Query>
-  )
-};
-
-
 export default function Home() {
   const ITEMS = [
     ['名言1','森'],
@@ -76,14 +51,22 @@ export default function Home() {
     <ApolloProvider client={apolloClient}>
     <Container>
       <Header tab={'top'}></Header>
-      <h2>テスト</h2>
-      {
-        item.map((str,index) => {
-          return <MessageItem key={index}>{str[0]}：{str[1]}</MessageItem>
-        })
-      }
+      <h3>怪しいスタートアップ名言集</h3>
+      <Query query={MY_QUERY_QUERY} >
+        {({ loading, error, data }) => {
+          if (loading) return <pre>Loading</pre>
+          if (data) {
+            return data['Quotations'].map((quotation,index) => {
+                  return (
+                    <MessageItem key={index}>{quotation['id']}：{quotation['message']}
+                    （By <a target='_blank' href={quotation['url']}>{quotation['speaker']}</a>）
+                    </MessageItem>
+                  )
+                })
+          }
+        }}
+      </Query>
     </Container>
-    <MyQueryQuery  />
    </ApolloProvider> 
   )
 }

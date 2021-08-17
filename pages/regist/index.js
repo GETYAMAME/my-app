@@ -9,7 +9,7 @@ export default function Regist() {
     return (
       <Container>
       <Header tab={'regist'}/>
-      <h2>メッセージ登録</h2>
+      <h3>メッセージ登録</h3>
       </Container>
     )
 }
