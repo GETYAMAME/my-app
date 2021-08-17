@@ -38,15 +38,6 @@ const MY_QUERY_QUERY = gql`
 `;
 
 export default function Home() {
-  const ITEMS = [
-    ['名言1','森'],
-    ['名言2','海'],
-    ['名言3','山'],
-  ]
-  const [item,setItem] = useState(ITEMS);
-  useEffect(()=> {
-    //setItem(ITEMS);
-  },[])
   return (
     <ApolloProvider client={apolloClient}>
     <Container>
@@ -59,7 +50,7 @@ export default function Home() {
             return data['Quotations'].map((quotation,index) => {
                   return (
                     <MessageItem key={index}>{quotation['id']}：{quotation['message']}
-                    （By <a target='_blank' href={quotation['url']}>{quotation['speaker']}</a>）
+                    （By <a target='_blank' rel="noreferrer" href={quotation['url']}>{quotation['speaker']}</a>）
                     </MessageItem>
                   )
                 })
